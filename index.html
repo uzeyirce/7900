@@ -33,7 +33,7 @@
             text-align: center;
         }
 
-        /* Uçan Kediler */
+        /* Flying Cats */
         .cat {
             position: absolute;
             font-size: 3.2rem;
@@ -75,7 +75,7 @@
         }
 
         .desc {
-            max-width: 700px;
+            max-width: 720px;
             font-size: clamp(1rem, 2vw, 1.35rem);
             margin: 0.8rem auto 0;
             line-height: 1.7;
@@ -118,16 +118,16 @@
         .info {
             margin-top: 2.5rem;
             font-size: clamp(0.95rem, 1.5vw, 1.15rem);
-            opacity: 0.85;
+            opacity: 0.9;
             color: #d0d0d0;
             position: relative;
             z-index: 1;
-            max-width: 600px;
+            max-width: 680px;
             padding: 0 1rem;
         }
 
         .info p {
-            margin: 0.4rem 0;
+            margin: 0.5rem 0;
         }
 
         .badge-row {
@@ -135,7 +135,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 0.8rem 1.5rem;
-            margin-top: 1rem;
+            margin-top: 1.2rem;
             position: relative;
             z-index: 1;
         }
@@ -145,7 +145,7 @@
             backdrop-filter: blur(4px);
             padding: 0.4rem 1.2rem;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             color: #39ff14;
@@ -163,26 +163,9 @@
         }
 
         @media (max-width: 640px) {
-            .hero {
-                padding: 2rem 1rem;
-            }
-            .btn {
-                padding: 0.9rem 2rem;
-                font-size: 1rem;
-            }
-            .cat {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .badge-row {
-                gap: 0.5rem;
-            }
-            .badge {
-                font-size: 0.65rem;
-                padding: 0.3rem 0.8rem;
-            }
+            .hero { padding: 2rem 1rem; }
+            .btn { padding: 0.9rem 2rem; font-size: 1rem; }
+            .cat { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -190,7 +173,7 @@
 
     <div class="hero">
 
-        <!-- Uçan Kediler (Süslü animasyon) -->
+        <!-- Flying Cats -->
         <div class="cat" style="left: 3%; animation-duration: 20s;">🐱</div>
         <div class="cat" style="left: 12%; animation-duration: 26s; animation-delay: -6s;">😺</div>
         <div class="cat" style="left: 22%; animation-duration: 16s; animation-delay: -11s;">🐈</div>
@@ -201,28 +184,29 @@
         <div class="cat" style="left: 85%; animation-duration: 24s; animation-delay: -7s;">😸</div>
         <div class="cat" style="left: 95%; animation-duration: 21s; animation-delay: -12s;">🐱</div>
 
-        <!-- Görseller tamamen kaldırıldı, sadece metin odaklı tasarım -->
         <h1>7900</h1>
         <p class="subtitle">Moon or Dust is in your hands.</p>
+        
         <p class="desc">
-            Special airdrop for <span class="highlight">7900 $CASHCAT</span> holders
-            on Robinhood Chain.
+            All remaining tokens in the creator wallet will be distributed among the <span class="highlight">first 7900 holders</span><br>
+            proportionally according to the amount of $CASHCAT they hold.
         </p>
 
-        <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4"
+        <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
            target="_blank" rel="noopener noreferrer" class="btn">
             View on Blockscout →
         </a>
 
         <div class="info">
-            <p>All tokens from the creator wallet have been distributed.<br>
-            Now it's up to you.</p>
+            <p><strong>The more 7900 $CASHCAT you hold, the larger your share will be.</strong></p>
+            <p>Buy and support the project to secure a bigger portion of the distribution.</p>
         </div>
 
         <div class="badge-row">
             <span class="badge">🔗 Robinhood Chain</span>
             <span class="badge">🪙 7900 Supply</span>
             <span class="badge">🐱 Community Driven</span>
+            <span class="badge">📊 Pro-Rata Distribution</span>
         </div>
 
     </div>
