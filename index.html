@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>$CASHCAT – The Meme Coin That Purrs 🐱</title>
+    <title>#7900 – The Ultimate Limited Edition</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
@@ -87,11 +87,12 @@
 
         .top-bar .brand-small {
             font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             letter-spacing: 1px;
             background: linear-gradient(135deg, var(--gold), var(--pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .top-bar .brand-small i {
@@ -137,9 +138,11 @@
             padding: 6px 18px;
             color: #ccc;
             letter-spacing: 0.5px;
+            font-weight: 700;
         }
         .top-bar .supply-badge strong {
             color: var(--gold);
+            font-size: 1.1rem;
         }
 
         /* ─── HERO SECTION ─── */
@@ -156,9 +159,9 @@
 
         .hero h1 {
             font-family: 'Press Start 2P', monospace;
-            font-size: clamp(2.6rem, 10vw, 5.4rem);
+            font-size: clamp(3.2rem, 12vw, 6.2rem);
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             background: linear-gradient(135deg, var(--gold) 30%, #fff5a0 50%, var(--pink) 80%);
             -webkit-background-clip: text;
@@ -225,19 +228,21 @@
         }
 
         .hero .sub-tagline {
-            font-size: clamp(0.95rem, 2.5vw, 1.4rem);
-            color: rgba(255, 255, 255, 0.75);
-            margin-top: 16px;
+            font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 20px;
             letter-spacing: 2px;
-            font-weight: 400;
-        }
-        .hero .sub-tagline span {
-            color: var(--gold);
             font-weight: 700;
         }
+        .hero .sub-tagline .highlight-number {
+            color: var(--gold);
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            font-weight: 900;
+        }
 
-        /* ─── CAT EMOJI FLOATING (enhanced) ─── */
-        .floating-cats {
+        /* ─── FLOATING EMOJIS (No cat, all hype) ─── */
+        .floating-emojis {
             position: fixed;
             top: 0;
             left: 0;
@@ -248,17 +253,17 @@
             overflow: hidden;
         }
 
-        .floating-cat {
+        .floating-emoji {
             position: absolute;
-            font-size: 2.2rem;
-            opacity: 0.20;
-            animation: float-cat linear infinite;
+            font-size: 2rem;
+            opacity: 0.15;
+            animation: float-emoji linear infinite;
             filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.15));
             user-select: none;
             will-change: transform;
         }
 
-        @keyframes float-cat {
+        @keyframes float-emoji {
             0% {
                 transform: translate(0, 0) rotate(0deg) scale(1);
                 opacity: 0.10;
@@ -268,7 +273,7 @@
                 transform: translate(40px, -60px) rotate(12deg) scale(1.1);
             }
             50% {
-                opacity: 0.25;
+                opacity: 0.20;
                 transform: translate(-20px, -120px) rotate(-8deg) scale(0.95);
             }
             75% {
@@ -280,8 +285,6 @@
                 opacity: 0.05;
             }
         }
-
-        /* Sparkle trails via pseudo – we'll use JS for extra sparkles */
 
         /* ─── PROGRESS / FOMO CARD ─── */
         .fomo-card {
@@ -348,7 +351,7 @@
         }
 
         .fomo-header .count-display {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--gold);
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
@@ -431,6 +434,10 @@
         .fomo-msg i {
             color: var(--gold);
             margin-right: 8px;
+        }
+        .fomo-msg .big-number {
+            color: var(--gold);
+            font-size: 1.2rem;
         }
 
         @keyframes pulse-fomo {
@@ -549,7 +556,7 @@
             margin-top: 4px;
         }
 
-        /* ─── FEATURES / MEME GRID ─── */
+        /* ─── FEATURES / GRID ─── */
         .meme-grid {
             width: 100%;
             max-width: 720px;
@@ -594,18 +601,18 @@
         /* ─── FOOTER ─── */
         .footer-note {
             margin-top: 40px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.12);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.15);
             text-align: center;
             letter-spacing: 1px;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             padding-top: 24px;
             width: 100%;
             max-width: 720px;
+            font-weight: 700;
         }
-        .footer-note a {
-            color: rgba(255, 255, 255, 0.15);
-            text-decoration: none;
+        .footer-note .gold {
+            color: var(--gold);
         }
 
         /* ─── RESPONSIVE ─── */
@@ -632,11 +639,11 @@
                 padding: 16px 24px;
             }
             .hero h1 {
-                font-size: clamp(2rem, 8vw, 3.4rem);
+                font-size: clamp(2.4rem, 10vw, 4rem);
             }
         }
 
-        /* ─── EXTRA SPARKLE (JS will add) ─── */
+        /* ─── SPARKLE ─── */
         .sparkle {
             position: fixed;
             pointer-events: none;
@@ -663,8 +670,8 @@
     <!-- ─── PARTICLES CANVAS ─── -->
     <canvas id="particles-canvas"></canvas>
 
-    <!-- ─── FLOATING CATS ─── -->
-    <div class="floating-cats" id="floatingCats"></div>
+    <!-- ─── FLOATING EMOJIS (Hype only) ─── -->
+    <div class="floating-emojis" id="floatingEmojis"></div>
 
     <!-- ─── SITE WRAPPER ─── -->
     <div class="site-wrapper">
@@ -672,7 +679,7 @@
         <!-- TOP BAR -->
         <div class="top-bar">
             <div class="brand-small">
-                <i class="fas fa-cat"></i> $CASHCAT
+                <i class="fas fa-hashtag"></i> 7900 CLUB
             </div>
             <div class="social-links">
                 <a href="#" class="telegram" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
@@ -680,27 +687,28 @@
                 <a href="#" class="dexscreener" aria-label="DexScreener" style="font-size:1.2rem; font-weight:700; color:rgba(255,255,255,0.5);">📊</a>
             </div>
             <div class="supply-badge">
-                <i class="fas fa-coins" style="color:var(--gold);"></i>
-                Supply: <strong>1B</strong> $CAT
+                <i class="fas fa-ticket-alt" style="color:var(--gold);"></i>
+                Total Spots: <strong>7,900</strong>
             </div>
         </div>
 
         <!-- HERO -->
         <section class="hero">
             <div class="glitch-wrapper">
-                <h1 data-text="$CASHCAT">$CASHCAT</h1>
+                <h1 data-text="#7900">#7900</h1>
             </div>
             <p class="sub-tagline">
                 <i class="fas fa-bolt" style="color:var(--gold);"></i>
-                The memecoin that <span>purrs</span> with gains.
+                Only <span class="highlight-number">7,900</span> spots exist.
                 <i class="fas fa-bolt" style="color:var(--gold);"></i>
+                <br><span style="font-size:0.7em; opacity:0.6; font-weight:400;">No second chances. Ever.</span>
             </p>
         </section>
 
         <!-- FOMO CARD -->
         <div class="fomo-card">
             <div class="fomo-header">
-                <span class="label"><i class="fas fa-users"></i> EARLY HOLDERS</span>
+                <span class="label"><i class="fas fa-user-check"></i> CLAIMED SPOTS</span>
                 <span class="count-display" id="holderCount">4,120 <span>/ 7,900</span></span>
             </div>
             <div class="progress-track">
@@ -712,7 +720,7 @@
             </div>
             <div style="text-align:center; margin-top: 6px;">
                 <span class="fomo-msg">
-                    <i class="fas fa-fire"></i> Only first 7,900 holders get the airdrop!
+                    <i class="fas fa-fire"></i> ⏳ Only <span class="big-number">7,900</span> wallets get the exclusive airdrop!
                 </span>
             </div>
         </div>
@@ -722,7 +730,7 @@
             <a href="#" class="btn-primary" id="buyBtn">
                 <span class="pulse-ring"></span>
                 <span class="rocket">🚀</span>
-                BUY $CASHCAT NOW!
+                SECURE YOUR SPOT NOW!
                 <span style="font-size:0.9rem; opacity:0.7;">&nbsp;─ 0% tax</span>
             </a>
             <div class="cta-extra-links">
@@ -738,45 +746,44 @@
             </div>
         </div>
 
-        <!-- MEME GRID / FEATURES -->
+        <!-- FEATURE GRID -->
         <div class="meme-grid">
             <div class="feature">
-                <span class="icon">😺</span>
-                <div class="title">Community Owned</div>
-                <div class="desc">LP burned, keys renounced</div>
+                <span class="icon">🔒</span>
+                <div class="title">Limited Supply</div>
+                <div class="desc">Hard cap at 7,900</div>
             </div>
             <div class="feature">
                 <span class="icon">⚡</span>
-                <div class="title">Lightning Speed</div>
+                <div class="title">Instant Access</div>
                 <div class="desc">0% buy/sell tax</div>
             </div>
             <div class="feature">
                 <span class="icon">🎁</span>
                 <div class="title">Airdrop Ready</div>
-                <div class="desc">First 7,900 holders</div>
+                <div class="desc">Exclusive for first 7,900</div>
             </div>
             <div class="feature">
                 <span class="icon">🔥</span>
-                <div class="title">Token Burn</div>
-                <div class="desc">50% burned at launch</div>
+                <div class="title">Community First</div>
+                <div class="desc">Built for the 7,900</div>
             </div>
         </div>
 
         <!-- FOOTER -->
         <div class="footer-note">
-            <i class="fas fa-cat" style="color:rgba(255,215,0,0.2);"></i>
-            &nbsp; $CASHCAT – not financial advice, just vibes &nbsp;
-            <i class="fas fa-cat" style="color:rgba(255,215,0,0.2);"></i>
-            <br><span style="font-size:0.6rem; opacity:0.5;">© 2026 • Purr-sist to the moon</span>
+            <i class="fas fa-hashtag" style="color:rgba(255,215,0,0.2);"></i>
+            &nbsp; <span class="gold">#7900</span> – Limited to the first 7,900 believers. &nbsp;
+            <i class="fas fa-hashtag" style="color:rgba(255,215,0,0.2);"></i>
+            <br><span style="font-size:0.6rem; opacity:0.5;">© 2026 • FOMO is real. Secure your legacy.</span>
         </div>
 
     </div>
 
     <script>
         /* ─── CONFIG ─── */
-        const TOTAL_SUPPLY = 7900;
-        let currentHolders = 4120;
         const MAX_HOLDERS = 7900;
+        let currentHolders = 4120;
 
         /* ─── DOM REFS ─── */
         const holderEl = document.getElementById('holderCount');
@@ -797,17 +804,14 @@
         /* ─── SIMULATE HOLDER GROWTH (FOMO) ─── */
         function simulateGrowth() {
             if (currentHolders >= MAX_HOLDERS) return;
-            // Random increment between 1–8
             const increment = Math.floor(Math.random() * 8) + 1;
             currentHolders = Math.min(currentHolders + increment, MAX_HOLDERS);
             updateUI();
 
-            // Occasionally burst
             if (Math.random() < 0.15) {
                 const burst = Math.floor(Math.random() * 20) + 5;
                 currentHolders = Math.min(currentHolders + burst, MAX_HOLDERS);
                 updateUI();
-                // visual feedback
                 createSparkleBurst();
             }
         }
@@ -833,8 +837,6 @@
         /* ─── START SIMULATION ─── */
         updateUI();
         setInterval(simulateGrowth, 3800);
-
-        // Extra burst on page load
         setTimeout(createSparkleBurst, 600);
 
         /* ─── PARTICLES (Canvas) ─── */
@@ -880,7 +882,6 @@
                     ctx.fillStyle = this.color;
                     ctx.globalAlpha = this.opacity;
                     ctx.fill();
-                    // glow
                     ctx.shadowColor = this.color;
                     ctx.shadowBlur = 18;
                     ctx.fill();
@@ -904,21 +905,21 @@
             animate();
         })();
 
-        /* ─── FLOATING CATS (enhanced) ─── */
-        (function initFloatingCats() {
-            const container = document.getElementById('floatingCats');
-            const emojis = ['🐱', '😺', '🐈', '🐈‍⬛', '😸', '😻', '🙀', '🐾'];
-            const count = 18;
+        /* ─── FLOATING EMOJIS (No cats, pure hype) ─── */
+        (function initFloatingEmojis() {
+            const container = document.getElementById('floatingEmojis');
+            const emojis = ['🚀', '⭐', '🔥', '💎', '✨', '🪙', '💥', '⚡'];
+            const count = 22;
 
             for (let i = 0; i < count; i++) {
                 const span = document.createElement('span');
-                span.className = 'floating-cat';
+                span.className = 'floating-emoji';
                 span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                 span.style.left = (Math.random() * 94 + 2) + '%';
                 span.style.top = (Math.random() * 90 + 5) + '%';
                 span.style.fontSize = (1.4 + Math.random() * 2.6) + 'rem';
-                span.style.animationDuration = (12 + Math.random() * 18) + 's';
-                span.style.animationDelay = (Math.random() * 20) + 's';
+                span.style.animationDuration = (14 + Math.random() * 20) + 's';
+                span.style.animationDelay = (Math.random() * 22) + 's';
                 span.style.opacity = 0.08 + Math.random() * 0.18;
                 container.appendChild(span);
             }
@@ -927,7 +928,6 @@
         /* ─── BUY BUTTON CLICK ─── */
         document.getElementById('buyBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            // burst of sparkles
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
@@ -942,13 +942,12 @@
                     setTimeout(() => el.remove(), 1500);
                 }, i * 30);
             }
-            // Fake "processing" feedback
             const btn = this;
             const origText = btn.innerHTML;
-            btn.innerHTML = '🚀 PURCHASING...';
+            btn.innerHTML = '🚀 PROCESSING...';
             btn.style.opacity = '0.7';
             setTimeout(() => {
-                btn.innerHTML = '✅ WAGMI! CHECK YOUR WALLET';
+                btn.innerHTML = '✅ SPOT SECURED! WELCOME TO THE 7900';
                 btn.style.opacity = '1';
                 setTimeout(() => {
                     btn.innerHTML = origText;
@@ -956,7 +955,7 @@
             }, 1400);
         });
 
-        /* ─── ADD SOME RANDOM SPARKLES OVER TIME ─── */
+        /* ─── RANDOM SPARKLES ─── */
         setInterval(() => {
             if (Math.random() < 0.3) {
                 const el = document.createElement('div');
@@ -972,8 +971,8 @@
             }
         }, 1200);
 
-        console.log('🐱 $CASHCAT – memecoin energy activated!');
-        console.log('🔥 FOMO engine running – holders: ' + currentHolders + '/' + MAX_HOLDERS);
+        console.log('🔥 #7900 – Only 7,900 spots. FOMO engine running.');
+        console.log('🎯 Claimed spots: ' + currentHolders + '/' + MAX_HOLDERS);
     </script>
 
 </body>
