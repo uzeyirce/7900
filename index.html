@@ -17,9 +17,7 @@
         :root {
             --neon: #39ff14;
             --gold: #FFD700;
-            --pink: #ff2d95;
             --purple-dark: #0a0015;
-            --purple-mid: #1a0030;
             --glass-bg: rgba(255, 255, 255, 0.06);
             --glass-border: rgba(57, 255, 20, 0.25);
         }
@@ -75,21 +73,16 @@
             text-shadow: 0 0 20px var(--neon);
         }
 
-        .social-links {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-        }
-
         .social-links a {
             color: rgba(255, 255, 255, 0.7);
             font-size: 1.6rem;
+            margin: 0 10px;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
             color: var(--neon);
-            transform: scale(1.25) translateY(-2px);
+            transform: scale(1.25);
         }
 
         .supply-badge {
@@ -99,49 +92,31 @@
             border-radius: 40px;
             padding: 6px 18px;
             color: #ccc;
-            letter-spacing: 0.5px;
             font-weight: 700;
         }
 
         .hero {
             text-align: center;
             width: 100%;
-            padding: 20px 0 10px;
+            padding: 30px 0 10px;
         }
 
         .hero h1 {
             font-family: 'Press Start 2P', monospace;
-            font-size: clamp(3.2rem, 12vw, 6.2rem);
+            font-size: clamp(3.4rem, 13vw, 6.5rem);
             font-weight: 900;
             letter-spacing: 6px;
             text-transform: uppercase;
             background: linear-gradient(135deg, var(--neon) 30%, #aaff99 70%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 40px rgba(57, 255, 20, 0.4));
-            animation: glitch-text 3s infinite alternate;
-        }
-
-        .hero h1::before,
-        .hero h1::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        @keyframes glitch-text {
-            0%, 85%, 100% { filter: drop-shadow(0 0 30px rgba(57, 255, 20, 0.4)); }
-            86% { filter: drop-shadow(0 0 60px rgba(57, 255, 20, 0.8)); }
+            filter: drop-shadow(0 0 40px rgba(57, 255, 20, 0.5));
         }
 
         .sub-tagline {
-            font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+            font-size: clamp(1.15rem, 3vw, 1.6rem);
             color: rgba(255, 255, 255, 0.9);
-            margin-top: 20px;
-            letter-spacing: 1.5px;
+            margin-top: 16px;
             font-weight: 700;
         }
 
@@ -192,22 +167,22 @@
 
         .progress-fill {
             height: 100%;
-            width: 0%;
             background: linear-gradient(90deg, #39ff14, #aaff99);
             border-radius: 40px;
             box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
         }
 
         .fomo-msg {
-            margin-top: 18px;
+            margin-top: 20px;
             text-align: center;
-            font-size: 0.98rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #fff;
             background: rgba(57, 255, 20, 0.12);
             border: 1px solid rgba(57, 255, 20, 0.3);
             border-radius: 60px;
-            padding: 12px 20px;
+            padding: 14px 20px;
+            line-height: 1.5;
         }
 
         .btn-primary {
@@ -228,6 +203,7 @@
             text-decoration: none;
             box-shadow: 0 0 50px rgba(57, 255, 20, 0.4);
             transition: all 0.3s ease;
+            margin: 10px 0;
         }
 
         .btn-primary:hover {
@@ -241,7 +217,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 16px;
-            margin: 28px 0 10px;
+            margin: 30px 0 20px;
         }
 
         .feature {
@@ -255,9 +231,9 @@
         .footer-note {
             margin-top: 40px;
             font-size: 0.78rem;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.25);
             text-align: center;
-            letter-spacing: 1px;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -296,28 +272,29 @@
             <div class="progress-track">
                 <div class="progress-fill" id="progressFill" style="width: 52.15%;"></div>
             </div>
-            <div class="progress-stats" style="display:flex; justify-content:space-between; font-size:0.8rem; margin-top:6px; color:rgba(255,255,255,0.6);">
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-top:8px; color:rgba(255,255,255,0.6);">
                 <span>🚀 <strong id="percentDisplay">52.2%</strong> filled</span>
                 <span>⏳ <strong id="remainingDisplay">3,780</strong> spots left</span>
             </div>
 
-            <div style="text-align:center; margin-top: 20px;">
+            <div style="text-align:center; margin-top: 24px;">
                 <span class="fomo-msg">
-                    <strong>First 7,900 wallets</strong> will share <strong>all tokens</strong> from the creator wallet<br>
-                    <span style="color:var(--neon);">proportionally to their holdings.</span>
+                    The first <strong>7,900 wallets</strong> will share <strong>ALL tokens</strong> from the creator wallet<br>
+                    proportionally according to their holdings on Robinhood Chain.
                 </span>
             </div>
         </div>
 
-        <div class="cta-section" style="width:100%; max-width:720px; margin:20px 0;">
-            <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
+        <div style="width:100%; max-width:720px;">
+            <a href="https://robinhoodchain.blockscout.com/token/0x443782b7567c2337c7612793a30978ef2fb777c1" 
                target="_blank" class="btn-primary">
-                <span>🚀 SECURE YOUR SPOT NOW</span>
+                <span>🚀 BUY 7900 & SECURE YOUR SPOT</span>
             </a>
-            <div style="margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
-                   target="_blank" class="btn-secondary" style="color:var(--neon); border:1px solid var(--neon); padding:10px 20px; border-radius:50px; text-decoration:none;">
-                    View on Blockscout
+
+            <div style="text-align:center; margin-top: 12px;">
+                <a href="https://robinhoodchain.blockscout.com/token/0x443782b7567c2337c7612793a30978ef2fb777c1" 
+                   target="_blank" style="color:var(--neon); text-decoration:none; font-weight:600;">
+                    View on Blockscout →
                 </a>
             </div>
         </div>
@@ -325,13 +302,13 @@
         <div class="meme-grid">
             <div class="feature">
                 <span style="font-size:2.4rem;">📊</span>
-                <div style="font-weight:700; margin:8px 0 4px;">Pro-Rata Share</div>
-                <div style="font-size:0.75rem; opacity:0.7;">More tokens = Bigger reward</div>
+                <div style="font-weight:700; margin:8px 0 4px;">Pro-Rata Distribution</div>
+                <div style="font-size:0.75rem; opacity:0.7;">Hold more = Earn more</div>
             </div>
             <div class="feature">
                 <span style="font-size:2.4rem;">🔒</span>
-                <div style="font-weight:700; margin:8px 0 4px;">7,900 Max</div>
-                <div style="font-size:0.75rem; opacity:0.7;">Limited to first holders</div>
+                <div style="font-weight:700; margin:8px 0 4px;">7,900 Limited</div>
+                <div style="font-size:0.75rem; opacity:0.7;">First holders only</div>
             </div>
             <div class="feature">
                 <span style="font-size:2.4rem;">🐱</span>
@@ -340,20 +317,20 @@
             </div>
             <div class="feature">
                 <span style="font-size:2.4rem;">⚡</span>
-                <div style="font-weight:700; margin:8px 0 4px;">0% Tax</div>
-                <div style="font-size:0.75rem; opacity:0.7;">Fair launch</div>
+                <div style="font-weight:700; margin:8px 0 4px;">Fair Launch</div>
+                <div style="font-size:0.75rem; opacity:0.7;">Creator tokens redistributed</div>
             </div>
         </div>
 
         <div class="footer-note">
-            7900 Token on Robinhood Chain • The first 7,900 holders share the creator wallet rewards proportionally.<br>
-            Buy more • Hold more • Earn more.
+            Contract: 0x443782b7567c2337c7612793a30978ef2fb777c1<br>
+            First 7,900 holders share the creator wallet rewards proportionally.<br>
+            Buy more • Hold more • Get bigger share.
         </div>
 
     </div>
 
     <script>
-        // Aynı script (FOMO simülasyonu)
         const MAX_HOLDERS = 7900;
         let currentHolders = 4120;
 
@@ -372,10 +349,7 @@
         }
 
         updateUI();
-        setInterval(simulateGrowth, 4200);
-
-        // Particles & floating emojis (mevcut kodun aynısı)
-        // ... (İstersen tam script'i de genişletebilirim)
+        setInterval(simulateGrowth, 3800);
     </script>
 
 </body>
