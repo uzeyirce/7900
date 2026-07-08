@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>7900 • Moon or Dust</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         
         body {
             margin: 0;
@@ -13,48 +13,68 @@
             background: #0a0a0a;
             color: white;
             font-family: 'Inter', sans-serif;
-            text-align: center;
             overflow-x: hidden;
         }
         
         .hero {
-            background: linear-gradient(180deg, #39ff14 0%, #0a0a0a 70%);
+            background: linear-gradient(180deg, #39ff14 0%, #0a0a0a 60%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
             padding: 2rem;
         }
         
+        /* Uçan Kediler */
+        .cat {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.7;
+            animation: fly linear infinite;
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        @keyframes fly {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
         .logo {
-            font-size: 12rem;
+            width: 420px;
+            filter: drop-shadow(0 0 50px #39ff14);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 5rem;
             font-weight: 900;
-            line-height: 1;
-            margin: 0;
+            margin: 0.5rem 0;
             color: #000;
             text-shadow: 0 0 40px #39ff14;
         }
         
-        h1 {
-            font-size: 3.5rem;
+        p {
+            max-width: 700px;
+            font-size: 1.5rem;
             margin: 1rem 0;
+            line-height: 1.6;
         }
         
-        p {
-            max-width: 600px;
-            font-size: 1.3rem;
-            opacity: 0.9;
-            line-height: 1.6;
+        .highlight {
+            color: #39ff14;
+            font-weight: bold;
         }
         
         .btn {
             display: inline-block;
             margin-top: 2rem;
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             background: #39ff14;
             color: black;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             border-radius: 50px;
             text-decoration: none;
@@ -62,43 +82,54 @@
         }
         
         .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px #39ff14;
+            transform: scale(1.08);
+            box-shadow: 0 0 40px #39ff14;
         }
         
         .info {
-            margin-top: 4rem;
-            opacity: 0.8;
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
         footer {
             padding: 2rem;
-            font-size: 0.9rem;
             opacity: 0.6;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <img src="7900.png" alt="7900" width="400" style="margin-bottom: 2rem; filter: drop-shadow(0 0 30px #39ff14);">
+        <!-- Uçan Kediler -->
+        <div class="cat" style="left: 5%; animation-duration: 18s;">🐱</div>
+        <div class="cat" style="left: 15%; animation-duration: 25s; animation-delay: -5s;">😺</div>
+        <div class="cat" style="left: 25%; animation-duration: 15s; animation-delay: -12s;">🐈</div>
+        <div class="cat" style="left: 40%; animation-duration: 22s; animation-delay: -8s;">😸</div>
+        <div class="cat" style="left: 55%; animation-duration: 19s;">🐱</div>
+        <div class="cat" style="left: 70%; animation-duration: 28s; animation-delay: -15s;">😺</div>
+        <div class="cat" style="left: 80%; animation-duration: 17s; animation-delay: -3s;">🐈</div>
+        <div class="cat" style="left: 90%; animation-duration: 24s;">😸</div>
+
+        <img src="7900.png" alt="7900 Logo" class="logo">
         
         <h1>7900</h1>
-        <p><strong>Moon or Dust sizin elinizde.</strong></p>
-        <p>$CASHCAT tutan 7900 cüzdana özel dağıtım yapıldı.</p>
+        <p><strong>Moon or Dust is in your hands.</strong></p>
+        <p>Special airdrop for <span class="highlight">7900 $CASHCAT</span> holders on Robinhood Chain.</p>
         
         <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
            target="_blank" class="btn">
-            Token Explorer →
+            View on Blockscout →
         </a>
         
         <div class="info">
-            <p>Creator cüzdanındaki tüm coinler buraya aktarıldı.<br>
-            Şimdi kaderiniz sizde.</p>
+            <p>All tokens from the creator wallet have been distributed.<br>
+            Now it's up to you.</p>
         </div>
     </div>
     
     <footer>
-        7900 Token • Robinhood Chain
+        7900 Token • Robinhood Chain • Built for the community
     </footer>
 </body>
 </html>
