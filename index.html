@@ -33,7 +33,7 @@
             text-align: center;
         }
 
-        /* Flying cats */
+        /* Uçan Kediler */
         .cat {
             position: absolute;
             font-size: 3.2rem;
@@ -53,49 +53,8 @@
             }
         }
 
-        /* Images container */
-        .image-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem 3.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .logo-wrapper img {
-            max-width: 280px;
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 0 40px #39ff14);
-            transition: transform 0.3s;
-        }
-
-        .logo-wrapper img:hover {
-            transform: scale(1.03);
-        }
-
-        .cashcat-wrapper img {
-            max-width: 200px;
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 0 30px rgba(57, 255, 20, 0.6));
-            border-radius: 20px;
-            transition: transform 0.3s;
-            background: rgba(10, 10, 10, 0.3);
-            padding: 0.4rem;
-        }
-
-        .cashcat-wrapper img:hover {
-            transform: scale(1.05) rotate(-2deg);
-        }
-
         h1 {
-            font-size: clamp(3.6rem, 12vw, 6rem);
+            font-size: clamp(4.5rem, 15vw, 8rem);
             font-weight: 900;
             margin: 0.2rem 0 0.5rem;
             color: #000;
@@ -203,17 +162,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        /* Responsive */
         @media (max-width: 640px) {
-            .image-group {
-                gap: 1.5rem;
-            }
-            .logo-wrapper img {
-                max-width: 200px;
-            }
-            .cashcat-wrapper img {
-                max-width: 150px;
-            }
             .hero {
                 padding: 2rem 1rem;
             }
@@ -227,12 +176,6 @@
         }
 
         @media (max-width: 450px) {
-            .logo-wrapper img {
-                max-width: 160px;
-            }
-            .cashcat-wrapper img {
-                max-width: 120px;
-            }
             .badge-row {
                 gap: 0.5rem;
             }
@@ -247,7 +190,7 @@
 
     <div class="hero">
 
-        <!-- Flying Cats -->
+        <!-- Uçan Kediler (Süslü animasyon) -->
         <div class="cat" style="left: 3%; animation-duration: 20s;">🐱</div>
         <div class="cat" style="left: 12%; animation-duration: 26s; animation-delay: -6s;">😺</div>
         <div class="cat" style="left: 22%; animation-duration: 16s; animation-delay: -11s;">🐈</div>
@@ -258,16 +201,7 @@
         <div class="cat" style="left: 85%; animation-duration: 24s; animation-delay: -7s;">😸</div>
         <div class="cat" style="left: 95%; animation-duration: 21s; animation-delay: -12s;">🐱</div>
 
-        <!-- Images: 7900 + CashCat (labels removed) -->
-        <div class="image-group">
-            <div class="logo-wrapper">
-                <img src="7900.png" alt="7900 Token Logo" loading="lazy">
-            </div>
-            <div class="cashcat-wrapper">
-                <img src="cashcat.png" alt="CashCat Mascot" loading="lazy">
-            </div>
-        </div>
-
+        <!-- Görseller tamamen kaldırıldı, sadece metin odaklı tasarım -->
         <h1>7900</h1>
         <p class="subtitle">Moon or Dust is in your hands.</p>
         <p class="desc">
@@ -276,26 +210,26 @@
         </p>
 
         <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4"
-        target="_blank" rel="noopener noreferrer" class="btn">
-        View on Blockscout →
-    </a>
+           target="_blank" rel="noopener noreferrer" class="btn">
+            View on Blockscout →
+        </a>
 
-    <div class="info">
-        <p>All tokens from the creator wallet have been distributed.<br>
-        Now it's up to you.</p>
+        <div class="info">
+            <p>All tokens from the creator wallet have been distributed.<br>
+            Now it's up to you.</p>
+        </div>
+
+        <div class="badge-row">
+            <span class="badge">🔗 Robinhood Chain</span>
+            <span class="badge">🪙 7900 Supply</span>
+            <span class="badge">🐱 Community Driven</span>
+        </div>
+
     </div>
 
-    <div class="badge-row">
-        <span class="badge">🔗 Robinhood Chain</span>
-        <span class="badge">🪙 1B Supply</span>
-        <span class="badge">🐱 Community Driven</span>
-    </div>
-
-</div>
-
-<footer>
-    7900 Token • Robinhood Chain • Built for the community
-</footer>
+    <footer>
+        7900 Token • Robinhood Chain • Built for the community
+    </footer>
 
 </body>
 </html>
