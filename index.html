@@ -6,7 +6,11 @@
     <title>7900 • Moon or Dust</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -14,122 +18,316 @@
             color: white;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            min-height: 100vh;
         }
-        
+
         .hero {
-            background: linear-gradient(180deg, #39ff14 0%, #0a0a0a 60%);
+            background: linear-gradient(180deg, #39ff14 0%, #0a0a0a 70%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 2rem;
+            padding: 3rem 1.5rem;
+            text-align: center;
         }
-        
-        /* Uçan Kediler */
+
+        /* Flying cats */
         .cat {
             position: absolute;
-            font-size: 3rem;
-            opacity: 0.7;
+            font-size: 3.2rem;
+            opacity: 0.6;
             animation: fly linear infinite;
             user-select: none;
             pointer-events: none;
+            z-index: 0;
         }
-        
+
         @keyframes fly {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-110vh) rotate(720deg);
+            }
         }
-        
-        .logo {
-            width: 420px;
-            filter: drop-shadow(0 0 50px #39ff14);
-            margin-bottom: 1rem;
+
+        /* Images container */
+        .image-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem 3.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
-        
+
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo-wrapper img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 40px #39ff14);
+            transition: transform 0.3s;
+        }
+
+        .logo-wrapper img:hover {
+            transform: scale(1.03);
+        }
+
+        .logo-wrapper .label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.7);
+            background: rgba(57, 255, 20, 0.25);
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .cashcat-wrapper img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 30px rgba(57, 255, 20, 0.6));
+            border-radius: 20px;
+            transition: transform 0.3s;
+            background: rgba(10, 10, 10, 0.3);
+            padding: 0.4rem;
+        }
+
+        .cashcat-wrapper img:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .cashcat-wrapper .label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.7);
+            background: rgba(57, 255, 20, 0.25);
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 0.4rem;
+        }
+
         h1 {
-            font-size: 5rem;
+            font-size: clamp(3.6rem, 12vw, 6rem);
             font-weight: 900;
-            margin: 0.5rem 0;
+            margin: 0.2rem 0 0.5rem;
             color: #000;
-            text-shadow: 0 0 40px #39ff14;
+            text-shadow: 0 0 60px #39ff14, 0 0 120px rgba(57, 255, 20, 0.3);
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 1;
         }
-        
-        p {
+
+        .subtitle {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 700;
+            margin: 0.2rem 0;
+            color: #000;
+            text-shadow: 0 0 30px #39ff14;
+            position: relative;
+            z-index: 1;
+        }
+
+        .desc {
             max-width: 700px;
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            line-height: 1.6;
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            margin: 0.8rem auto 0;
+            line-height: 1.7;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+            padding: 0 1rem;
         }
-        
-        .highlight {
+
+        .desc .highlight {
             color: #39ff14;
-            font-weight: bold;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
         }
-        
+
         .btn {
             display: inline-block;
-            margin-top: 2rem;
-            padding: 1.2rem 3rem;
+            margin-top: 2.2rem;
+            padding: 1.1rem 3.2rem;
             background: #39ff14;
-            color: black;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border-radius: 50px;
+            color: #000;
+            font-size: 1.25rem;
+            font-weight: 800;
+            border-radius: 60px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+            border: 2px solid #39ff14;
         }
-        
+
         .btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 40px #39ff14;
+            transform: scale(1.07);
+            box-shadow: 0 0 60px #39ff14, 0 0 120px rgba(57, 255, 20, 0.25);
+            background: transparent;
+            color: #39ff14;
         }
-        
+
         .info {
-            margin-top: 3rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
+            margin-top: 2.5rem;
+            font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+            opacity: 0.85;
+            color: #d0d0d0;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            padding: 0 1rem;
         }
-        
+
+        .info p {
+            margin: 0.4rem 0;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.5rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            background: rgba(57, 255, 20, 0.12);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #39ff14;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+        }
+
         footer {
-            padding: 2rem;
-            opacity: 0.6;
-            font-size: 1rem;
+            padding: 2rem 1rem;
+            opacity: 0.5;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #aaa;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .image-group {
+                gap: 1.5rem;
+            }
+            .logo-wrapper img {
+                max-width: 200px;
+            }
+            .cashcat-wrapper img {
+                max-width: 150px;
+            }
+            .hero {
+                padding: 2rem 1rem;
+            }
+            .btn {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+            .cat {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .logo-wrapper img {
+                max-width: 160px;
+            }
+            .cashcat-wrapper img {
+                max-width: 120px;
+            }
+            .badge-row {
+                gap: 0.5rem;
+            }
+            .badge {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <!-- Uçan Kediler -->
-        <div class="cat" style="left: 5%; animation-duration: 18s;">🐱</div>
-        <div class="cat" style="left: 15%; animation-duration: 25s; animation-delay: -5s;">😺</div>
-        <div class="cat" style="left: 25%; animation-duration: 15s; animation-delay: -12s;">🐈</div>
-        <div class="cat" style="left: 40%; animation-duration: 22s; animation-delay: -8s;">😸</div>
-        <div class="cat" style="left: 55%; animation-duration: 19s;">🐱</div>
-        <div class="cat" style="left: 70%; animation-duration: 28s; animation-delay: -15s;">😺</div>
-        <div class="cat" style="left: 80%; animation-duration: 17s; animation-delay: -3s;">🐈</div>
-        <div class="cat" style="left: 90%; animation-duration: 24s;">😸</div>
 
-        <img src="7900.png" alt="7900 Logo" class="logo">
-        
-        <h1>7900</h1>
-        <p><strong>Moon or Dust is in your hands.</strong></p>
-        <p>Special airdrop for <span class="highlight">7900 $CASHCAT</span> holders on Robinhood Chain.</p>
-        
-        <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
-           target="_blank" class="btn">
-            View on Blockscout →
-        </a>
-        
-        <div class="info">
-            <p>All tokens from the creator wallet have been distributed.<br>
-            Now it's up to you.</p>
+    <div class="hero">
+
+        <!-- Flying Cats -->
+        <div class="cat" style="left: 3%; animation-duration: 20s;">🐱</div>
+        <div class="cat" style="left: 12%; animation-duration: 26s; animation-delay: -6s;">😺</div>
+        <div class="cat" style="left: 22%; animation-duration: 16s; animation-delay: -11s;">🐈</div>
+        <div class="cat" style="left: 35%; animation-duration: 23s; animation-delay: -4s;">😸</div>
+        <div class="cat" style="left: 48%; animation-duration: 19s; animation-delay: -9s;">🐱</div>
+        <div class="cat" style="left: 60%; animation-duration: 28s; animation-delay: -14s;">😺</div>
+        <div class="cat" style="left: 73%; animation-duration: 17s; animation-delay: -2s;">🐈</div>
+        <div class="cat" style="left: 85%; animation-duration: 24s; animation-delay: -7s;">😸</div>
+        <div class="cat" style="left: 95%; animation-duration: 21s; animation-delay: -12s;">🐱</div>
+
+        <!-- Images: 7900 + CashCat -->
+        <div class="image-group">
+            <div class="logo-wrapper">
+                <img src="7900.png" alt="7900 Token Logo" loading="lazy">
+                <span class="label">⚡ 7900</span>
+            </div>
+            <div class="cashcat-wrapper">
+                <img src="cashcat.png" alt="CashCat Mascot" loading="lazy">
+                <span class="label">🐾 $CASHCAT</span>
+            </div>
         </div>
+
+        <h1>7900</h1>
+        <p class="subtitle">Moon or Dust is in your hands.</p>
+        <p class="desc">
+            Special airdrop for <span class="highlight">7900 $CASHCAT</span> holders
+            on Robinhood Chain.
+        </p>
+
+        <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4"
+        target="_blank" rel="noopener noreferrer" class="btn">
+        View on Blockscout →
+    </a>
+
+    <div class="info">
+        <p>All tokens from the creator wallet have been distributed.<br>
+        Now it's up to you.</p>
     </div>
-    
-    <footer>
-        7900 Token • Robinhood Chain • Built for the community
-    </footer>
+
+    <div class="badge-row">
+        <span class="badge">🔗 Robinhood Chain</span>
+        <span class="badge">🪙 7900 Supply</span>
+        <span class="badge">🐱 Community Driven</span>
+    </div>
+
+</div>
+
+<footer>
+    7900 Token • Robinhood Chain • Built for the community
+</footer>
+
 </body>
 </html>
