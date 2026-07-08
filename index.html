@@ -1,135 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7900 • Moon or Dust</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background: #0a0a0a;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-        
-        .hero {
-            background: linear-gradient(180deg, #39ff14 0%, #0a0a0a 60%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 2rem;
-        }
-        
-        /* Uçan Kediler */
-        .cat {
-            position: absolute;
-            font-size: 3rem;
-            opacity: 0.7;
-            animation: fly linear infinite;
-            user-select: none;
-            pointer-events: none;
-        }
-        
-        @keyframes fly {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100vh) rotate(360deg); }
-        }
-        
-        .logo {
-            width: 420px;
-            filter: drop-shadow(0 0 50px #39ff14);
-            margin-bottom: 1rem;
-        }
-        
-        h1 {
-            font-size: 5rem;
-            font-weight: 900;
-            margin: 0.5rem 0;
-            color: #000;
-            text-shadow: 0 0 40px #39ff14;
-        }
-        
-        p {
-            max-width: 700px;
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            line-height: 1.6;
-        }
-        
-        .highlight {
-            color: #39ff14;
-            font-weight: bold;
-        }
-        
-        .btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 1.2rem 3rem;
-            background: #39ff14;
-            color: black;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 40px #39ff14;
-        }
-        
-        .info {
-            margin-top: 3rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        footer {
-            padding: 2rem;
-            opacity: 0.6;
-            font-size: 1rem;
-        }
-    </style>
+    <title>$7900 Token - $CASHCAT Airdrop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="hero">
-        <!-- Uçan Kediler -->
-        <div class="cat" style="left: 5%; animation-duration: 18s;">🐱</div>
-        <div class="cat" style="left: 15%; animation-duration: 25s; animation-delay: -5s;">😺</div>
-        <div class="cat" style="left: 25%; animation-duration: 15s; animation-delay: -12s;">🐈</div>
-        <div class="cat" style="left: 40%; animation-duration: 22s; animation-delay: -8s;">😸</div>
-        <div class="cat" style="left: 55%; animation-duration: 19s;">🐱</div>
-        <div class="cat" style="left: 70%; animation-duration: 28s; animation-delay: -15s;">😺</div>
-        <div class="cat" style="left: 80%; animation-duration: 17s; animation-delay: -3s;">🐈</div>
-        <div class="cat" style="left: 90%; animation-duration: 24s;">😸</div>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <img src="assets/7900-logo.png" alt="$7900 Logo" class="logo">
+                <h1>$7900 Token</h1>
+            </div>
+            <p class="subtitle">$CASHCAT Topluluğuna Özel Airdrop</p>
+        </header>
 
-        <img src="7900.png" alt="7900 Logo" class="logo">
-        
-        <h1>7900</h1>
-        <p><strong>Moon or Dust is in your hands.</strong></p>
-        <p>Special airdrop for <span class="highlight">7900 $CASHCAT</span> holders on Robinhood Chain.</p>
-        
-        <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
-           target="_blank" class="btn">
-            View on Blockscout →
-        </a>
-        
-        <div class="info">
-            <p>All tokens from the creator wallet have been distributed.<br>
-            Now it's up to you.</p>
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Toplam Hak Sahibi</span>
+                <span class="stat-value" id="totalHolders">7,900</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Dağıtılan Token</span>
+                <span class="stat-value" id="distributedAmount">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Tamamlanan</span>
+                <span class="stat-value" id="completedPercent">0%</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Son Durum</span>
+                <span class="stat-value" id="status">Hazır</span>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Live Transactions -->
+        <div class="transactions-container">
+            <h2>📡 Canlı Dağıtım</h2>
+            <div class="transaction-list" id="transactionList">
+                <div class="loading">Dağıtım başlatılıyor...</div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="startDistribution" class="btn-primary">🚀 Dağıtımı Başlat</button>
+            <button id="pauseDistribution" class="btn-secondary" disabled>⏸ Durdur</button>
+            <button id="resetDistribution" class="btn-danger">🔄 Sıfırla</button>
+        </div>
+
+        <!-- Info -->
+        <div class="info-box">
+            <h3>📋 Dağıtım Detayları</h3>
+            <ul>
+                <li>🔹 <strong>Token:</strong> $7900</li>
+                <li>🔹 <strong>Kontrat:</strong> <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" target="_blank">0x020bfC650A365f8BB26819deAAbF3E21291018b4</a></li>
+                <li>🔹 <strong>Hak Sahipleri:</strong> 7,900 $CASHCAT Holder</li>
+                <li>🔹 <strong>Miktar:</strong> Her adrese eşit dağıtım</li>
+            </ul>
+        </div>
+
+        <!-- Holder List -->
+        <div class="holders-section">
+            <h3>👥 Hak Sahipleri Listesi</h3>
+            <div class="search-box">
+                <input type="text" id="searchHolder" placeholder="Adres ara...">
+            </div>
+            <div class="holder-list" id="holderList"></div>
         </div>
     </div>
-    
-    <footer>
-        7900 Token • Robinhood Chain • Built for the community
-    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
