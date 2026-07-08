@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LunarHood — $LUNARHOOD on Robinhood Chain</title>
+<meta property="og:title" content="LunarHood — $LUNARHOOD"/>
+<meta property="og:description" content="Everyone deserves to light up their moon. $LUNARHOOD on Robinhood Chain."/>
+<meta property="og:image" content="./hero.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00C853;
+  --green2:#00a846;
+  --green3:#004d20;
+  --purple:#7c3aed;
+  --purple-light:#a78bfa;
+  --navy:#030a03;
+  --navy2:#071007;
+  --navy3:#0a1a0a;
+  --white:#f0fff4;
+  --muted:#4a7a5a;
+  --accent:#00ff88;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* ====== CANVAS PARTICLE LAYER ====== */
+#particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ====== EXPLOSION LAYER ====== */
+#explosion-layer{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+
+/* ====== PAGE ====== */
+.page{position:relative;z-index:1}
+
+/* ====== TICKER ====== */
+.ticker{position:fixed;top:0;left:0;right:0;background:rgba(3,10,3,0.92);border-bottom:1px solid rgba(0,200,83,0.25);padding:8px 20px;display:flex;align-items:center;gap:16px;z-index:100;backdrop-filter:blur(10px);font-size:13px}
+.ticker-token{font-family:'Space Mono',monospace;font-weight:700;color:var(--green);letter-spacing:1px}
+.ticker-chain{color:var(--muted);font-size:11px}
+.ticker-right{margin-left:auto;font-family:monospace;font-size:11px;color:var(--muted);display:none}
+@media(min-width:600px){.ticker-right{display:block}}
+.ticker-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* ====== HERO ====== */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px;position:relative;overflow:hidden}
+
+/* Green glow behind hero */
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(0,200,83,0.12) 0%,transparent 65%);pointer-events:none}
+
+/* Hero image */
+.hero-img-wrap{
+  width:min(560px,92vw);
+  position:relative;
+  margin-bottom:40px;
+  animation:heroFloat 8s ease-in-out infinite;
+  filter:drop-shadow(0 0 60px rgba(0,200,83,0.35)) drop-shadow(0 0 20px rgba(0,200,83,0.2));
+}
+@keyframes heroFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-14px) scale(1.01)}}
+
+.hero-img-wrap::before{
+  content:'';position:absolute;inset:-20px;
+  background:radial-gradient(ellipse at 50% 50%,rgba(0,200,83,0.15) 0%,transparent 70%);
+  border-radius:50%;animation:pulseAura 3s ease-in-out infinite;
+}
+@keyframes pulseAura{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+
+.hero-img{width:100%;border-radius:16px;display:block;
+  filter:hue-rotate(-30deg) saturate(1.3) brightness(1.1);
+}
+
+/* Crack overlay on image */
+.crack-overlay{
+  position:absolute;inset:0;border-radius:16px;pointer-events:none;
+  background:repeating-linear-gradient(
+    45deg,transparent,transparent 80px,
+    rgba(0,255,136,0.04) 80px,rgba(0,255,136,0.04) 81px
+  );
+}
+
+/* Title */
+.hero-eye{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:14px;animation:fadeUp 0.6s ease 0.3s both}
+.hero-title{font-family:'Space Mono',monospace;font-size:clamp(48px,12vw,96px);line-height:0.92;letter-spacing:-2px;color:var(--white);text-shadow:0 0 60px rgba(0,200,83,0.5),0 0 120px rgba(0,200,83,0.2);animation:fadeUp 0.6s ease 0.4s both}
+.hero-title .green{color:var(--green);display:block}
+.hero-sub{margin-top:20px;font-size:clamp(15px,3vw,19px);color:rgba(240,255,244,0.65);max-width:500px;line-height:1.6;animation:fadeUp 0.6s ease 0.5s both}
+.hero-slogan{margin-top:10px;font-size:clamp(13px,2.5vw,16px);color:var(--green);letter-spacing:1px;font-style:italic;animation:fadeUp 0.6s ease 0.55s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* CA */
+.ca-wrap{margin-top:36px;animation:fadeUp 0.6s ease 0.65s both}
+.ca-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:8px}
+.ca-box{display:flex;align-items:center;gap:10px;background:rgba(0,200,83,0.07);border:1px solid rgba(0,200,83,0.3);border-radius:10px;padding:12px 16px;max-width:560px;margin:0 auto}
+.ca-addr{font-family:'Space Mono',monospace;font-size:clamp(10px,2vw,14px);color:var(--green);flex:1;word-break:break-all;text-align:left}
+.ca-btn{background:var(--green);color:#030a03;border:none;border-radius:6px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap;transition:background 0.15s,transform 0.1s;flex-shrink:0;font-family:'Space Mono',monospace}
+.ca-btn:hover{background:var(--green2);transform:scale(1.04)}
+.ca-btn.copied{background:var(--muted)}
+@media(max-width:480px){.ca-box{flex-direction:column}.ca-addr{text-align:center}}
+
+/* Buttons */
+.hero-btns{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;animation:fadeUp 0.6s ease 0.75s both}
+.btn{display:inline-block;padding:13px 26px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;cursor:pointer}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--green);color:#030a03;box-shadow:0 4px 20px rgba(0,200,83,0.3)}
+.btn-primary:hover{box-shadow:0 8px 30px rgba(0,200,83,0.5)}
+.btn-outline{background:transparent;border:1px solid rgba(0,200,83,0.4);color:var(--green)}
+.btn-outline:hover{border-color:var(--green);background:rgba(0,200,83,0.07)}
+
+/* ====== STATS ====== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;max-width:800px;margin:0 auto;padding:0 20px}
+.stat{background:rgba(0,200,83,0.06);border:1px solid rgba(0,200,83,0.18);border-radius:12px;padding:22px 16px;text-align:center;transition:border-color 0.3s,transform 0.3s}
+.stat:hover{border-color:rgba(0,200,83,0.5);transform:translateY(-4px)}
+.stat-val{font-family:'Space Mono',monospace;font-size:32px;color:var(--green)}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+
+/* ====== SECTIONS ====== */
+.section{padding:80px 20px;max-width:880px;margin:0 auto;text-align:center}
+.eye{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--green);margin-bottom:12px}
+.divider{width:48px;height:3px;background:var(--green);margin:0 auto 28px;border-radius:2px}
+.sec-title{font-family:'Space Mono',monospace;font-size:clamp(28px,6vw,52px);line-height:1.05;margin-bottom:18px}
+.sec-body{font-size:17px;color:rgba(240,255,244,0.65);line-height:1.75;max-width:580px;margin:0 auto 20px}
+
+/* ====== TOKENOMICS ====== */
+.toko{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:36px;text-align:left}
+.toko-card{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.18);border-radius:12px;padding:22px 18px;transition:transform 0.2s,border-color 0.2s}
+.toko-card:hover{transform:translateY(-4px);border-color:rgba(0,200,83,0.4)}
+.toko-pct{font-family:'Space Mono',monospace;font-size:32px;color:var(--green);font-weight:700}
+.toko-lbl{font-size:14px;color:var(--white);margin:6px 0 4px;font-weight:600}
+.toko-desc{font-size:12px;color:var(--muted)}
+
+/* ====== HOW TO BUY ====== */
+.htb{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:36px;text-align:left}
+.htb-card{background:rgba(255,255,255,0.02);border:1px solid rgba(0,200,83,0.14);border-radius:12px;padding:22px 18px;transition:border-color 0.2s}
+.htb-card:hover{border-color:rgba(0,200,83,0.35)}
+.htb-n{width:36px;height:36px;background:var(--green);color:#030a03;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;margin-bottom:12px;font-family:'Space Mono',monospace}
+.htb-card h3{font-size:16px;font-weight:600;margin-bottom:7px}
+.htb-card p{font-size:13px;color:var(--muted);line-height:1.6}
+.htb-card a{color:var(--green)}
+
+/* ====== SCROLL REVEAL ====== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ====== FOOTER ====== */
+footer{border-top:1px solid rgba(0,200,83,0.1);padding:28px 20px;text-align:center;font-size:13px;color:var(--muted)}
+footer a{color:var(--green);text-decoration:none}
+
+/* ====== ROCKETS ====== */
+.rocket{position:fixed;font-size:28px;z-index:3;pointer-events:none;animation:rocketFly linear forwards}
+@keyframes rocketFly{
+  0%{transform:translate(0,0) rotate(var(--r)) scale(0.5);opacity:0}
+  10%{opacity:1;transform:translate(calc(var(--dx)*0.1),calc(var(--dy)*0.1)) rotate(var(--r)) scale(1)}
+  90%{opacity:1}
+  100%{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(0.3);opacity:0}
+}
+
+/* ====== EXPLOSION ====== */
+.explosion{position:absolute;border-radius:50%;pointer-events:none;animation:explode 0.7s ease-out forwards}
+@keyframes explode{
+  0%{transform:scale(0);opacity:1}
+  60%{opacity:0.8}
+  100%{transform:scale(1);opacity:0}
+}
+.spark{position:absolute;width:3px;border-radius:2px;transform-origin:0 50%;animation:spark linear forwards}
+@keyframes spark{
+  0%{opacity:1;transform:rotate(var(--a)) scaleX(1)}
+  100%{opacity:0;transform:rotate(var(--a)) scaleX(0) translateX(var(--len))}
+}
+.crack{position:absolute;pointer-events:none;animation:crackFade 1.2s ease-out forwards}
+@keyframes crackFade{0%{opacity:0.9}100%{opacity:0}}
+</style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div id="explosion-layer"></div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="ticker-dot"></span>
+  <span class="ticker-token">$LUNARHOOD</span>
+  <span class="ticker-chain">Robinhood Chain · RWA · AI</span>
+  <span class="ticker-right" id="ticker-ca">CA: TBA</span>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="./hero.png" alt="LunarHood — hooded figure on the moon">
+      <div class="crack-overlay"></div>
+    </div>
+
+    <p class="hero-eye">Robinhood Chain · RWA · AI · Meme</p>
+    <h1 class="hero-title">LUNAR<span class="green">HOOD</span></h1>
+    <p class="hero-slogan">Everyone deserves to light up their moon.</p>
+    <p class="hero-sub">The hooded figure that redistributes wealth on-chain. Tokenized RWAs. AI-native. Powered by Robinhood Chain.</p>
+
+    <div class="ca-wrap">
+      <p class="ca-label">Contract Address</p>
+      <div class="ca-box">
+        <span class="ca-addr" id="ca-addr">TBA — launching soon</span>
+        <button class="ca-btn" id="ca-btn" onclick="copyCA()">Copy</button>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="https://fun.noxa.fi/robinhood/token/0xf746430b82c6111555e1386785dc99e9584a1a45" target="_blank" rel="noopener">Buy $LUNARHOOD</a>
+      <a class="btn btn-outline" href="https://fun.noxa.fi/robinhood/token/0xf746430b82c6111555e1386785dc99e9584a1a45" target="_blank" rel="noopener">📊 Chart</a>
+      <a class="btn btn-outline" href="https://x.com/LUNAR_HOOD" target="_blank" rel="noopener">𝕏 Twitter</a>
+      <a class="btn btn-outline" href="https://t.me/Lunarhood_official" target="_blank" rel="noopener">✈ Telegram</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="stat"><div class="stat-val">1B</div><div class="stat-lbl">Total Supply</div></div>
+    <div class="stat"><div class="stat-val">0%</div><div class="stat-lbl">Tax</div></div>
+    <div class="stat"><div class="stat-val">🔒</div><div class="stat-lbl">LP Locked</div></div>
+    <div class="stat"><div class="stat-val">🌙</div><div class="stat-lbl">RWA On-Chain</div></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section reveal">
+    <p class="eye">About</p>
+    <div class="divider"></div>
+    <h2 class="sec-title">Illuminate every wallet</h2>
+    <p class="sec-body">Robinhood took from the rich. LunarHood does it on-chain — redistributing tokenized real-world assets (RWAs) across Robinhood Chain. No VCs. No presale. Just the community, the chain, and the moon.</p>
+    <p class="sec-body" style="font-style:italic;color:rgba(0,200,83,0.8)">"Everyone deserves to light up their own moon."</p>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section class="section reveal">
+    <p class="eye">Tokenomics</p>
+    <div class="divider"></div>
+    <h2 class="sec-title">Fair & transparent</h2>
+    <div class="toko">
+      <div class="toko-card"><div class="toko-pct">50%</div><div class="toko-lbl">Liquidity Pool</div><div class="toko-desc">Locked at launch, verifiable on-chain</div></div>
+      <div class="toko-card"><div class="toko-pct">25%</div><div class="toko-lbl">Community Rewards</div><div class="toko-desc">Airdrops, missions, holder rewards</div></div>
+      <div class="toko-card"><div class="toko-pct">15%</div><div class="toko-lbl">Marketing</div><div class="toko-desc">Growth, partnerships, KOLs</div></div>
+      <div class="toko-card"><div class="toko-pct">10%</div><div class="toko-lbl">Development</div><div class="toko-desc">Product, RWA integrations, team</div></div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUY -->
+  <section class="section reveal">
+    <p class="eye">How to Buy</p>
+    <div class="divider"></div>
+    <h2 class="sec-title">Join the hood</h2>
+    <div class="htb">
+      <div class="htb-card"><div class="htb-n">1</div><h3>Get a wallet</h3><p>Install <a href="https://rabby.io" target="_blank" rel="noopener">Rabby</a> or MetaMask.</p></div>
+      <div class="htb-card"><div class="htb-n">2</div><h3>Add Robinhood Chain</h3><p>Chain ID: 4663 · RPC: rpc.mainnet.chain.robinhood.com</p></div>
+      <div class="htb-card"><div class="htb-n">3</div><h3>Bridge ETH</h3><p>Use the <a href="https://docs.robinhood.com/chain/connecting" target="_blank" rel="noopener">official bridge</a>.</p></div>
+      <div class="htb-card"><div class="htb-n">4</div><h3>Buy $LUNARHOOD</h3><p>Swap on <a href="https://fun.noxa.fi/robinhood/token/0xf746430b82c6111555e1386785dc99e9584a1a45" target="_blank" rel="noopener">fun.noxa.fi</a> using the contract address.</p></div>
+    </div>
+  </section>
+
+  <footer class="reveal">
+    <p>$LUNARHOOD · Robinhood Chain · Independent community project</p>
+    <p style="margin-top:6px;font-size:12px">Not affiliated with Robinhood Markets, Inc.</p>
+    <p style="margin-top:14px">
+      <a href="https://x.com/LUNAR_HOOD" target="_blank" rel="noopener">Twitter</a> ·
+      <a href="https://t.me/Lunarhood_official" target="_blank" rel="noopener">Telegram</a> ·
+      <a href="https://fun.noxa.fi/robinhood/token/0xf746430b82c6111555e1386785dc99e9584a1a45" target="_blank" rel="noopener">Buy</a> ·
+      <a href="https://fun.noxa.fi/robinhood/token/0xf746430b82c6111555e1386785dc99e9584a1a45" target="_blank" rel="noopener">Chart</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+/* ===== CA ===== */
+const CA="0xf746430b82c6111555e1386785dc99e9584a1a45";
+function updateCA(a){
+  document.getElementById("ca-addr").textContent=a==="TBA"?"TBA — launching soon":a;
+  document.getElementById("ticker-ca").textContent=a==="TBA"?"CA: TBA":"CA: "+a.slice(0,6)+"..."+a.slice(-4);
+}
+updateCA(CA);
+function copyCA(){
+  if(CA==="TBA"){alert("Contract address not yet available.");return;}
+  navigator.clipboard.writeText(CA).then(()=>{
+    const b=document.getElementById("ca-btn");
+    b.textContent="Copied!";b.classList.add("copied");
+    setTimeout(()=>{b.textContent="Copy";b.classList.remove("copied");},2000);
+  });
+}
+
+/* ===== PARTICLE CANVAS — star field ===== */
+const canvas=document.getElementById("particle-canvas");
+const ctx=canvas.getContext("2d");
+let W,H,stars=[];
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;initStars();}
+function initStars(){
+  stars=[];
+  for(let i=0;i<200;i++){
+    stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,
+      speed:Math.random()*0.15+0.05,opacity:Math.random()});
+  }
+}
+function drawStars(){
+  ctx.clearRect(0,0,W,H);
+  stars.forEach(s=>{
+    s.opacity+=0.005*(Math.random()>0.5?1:-1);
+    s.opacity=Math.max(0.1,Math.min(0.9,s.opacity));
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,200,83,${s.opacity*0.6})`;
+    ctx.fill();
+    s.y+=s.speed;
+    if(s.y>H){s.y=0;s.x=Math.random()*W;}
+  });
+  requestAnimationFrame(drawStars);
+}
+window.addEventListener("resize",resize);
+resize();
+drawStars();
+
+/* ===== ROCKETS ===== */
+const ROCKETS=["🚀","🚀","🚀","⚡","🌙"];
+function launchRocket(){
+  const el=document.createElement("div");
+  el.className="rocket";
+  el.textContent=ROCKETS[Math.floor(Math.random()*ROCKETS.length)];
+  const startX=Math.random()*innerWidth;
+  const startY=innerHeight+40;
+  const angle=-(Math.random()*60+60); // 60–120 deg upward
+  const dist=innerHeight*1.4;
+  const rad=angle*Math.PI/180;
+  const dx=Math.cos(rad)*dist;
+  const dy=Math.sin(rad)*dist;
+  const rot=-(90-angle);
+  const dur=(Math.random()*2+2)+"s";
+  el.style.cssText=`left:${startX}px;top:${startY}px;--dx:${dx}px;--dy:${dy}px;--r:${rot}deg;animation-duration:${dur}`;
+  document.body.appendChild(el);
+  el.addEventListener("animationend",()=>{
+    // explosion at landing point (off-screen so just remove)
+    el.remove();
+  });
+}
+// Launch rockets periodically
+setInterval(launchRocket,800);
+// Burst on click/tap
+document.addEventListener("click",e=>{
+  spawnExplosion(e.clientX,e.clientY);
+  for(let i=0;i<3;i++)setTimeout(launchRocket,i*120);
+});
+
+/* ===== EXPLOSION + CRACKS ===== */
+const layer=document.getElementById("explosion-layer");
+function spawnExplosion(x,y){
+  // Ring
+  const ring=document.createElement("div");
+  ring.className="explosion";
+  const size=80+Math.random()*80;
+  ring.style.cssText=`left:${x-size/2}px;top:${y-size/2}px;width:${size}px;height:${size}px;border:2px solid rgba(0,200,83,0.8);animation-duration:0.6s`;
+  layer.appendChild(ring);
+  ring.addEventListener("animationend",()=>ring.remove());
+
+  // Inner flash
+  const flash=document.createElement("div");
+  flash.className="explosion";
+  const fs=30+Math.random()*30;
+  flash.style.cssText=`left:${x-fs/2}px;top:${y-fs/2}px;width:${fs}px;height:${fs}px;background:rgba(0,255,136,0.5);animation-duration:0.4s`;
+  layer.appendChild(flash);
+  flash.addEventListener("animationend",()=>flash.remove());
+
+  // Sparks
+  const numSparks=12+Math.floor(Math.random()*8);
+  for(let i=0;i<numSparks;i++){
+    const spark=document.createElement("div");
+    spark.className="spark";
+    const angle=(i/numSparks)*360;
+    const len=30+Math.random()*50;
+    const h=2+Math.random()*3;
+    const dur=(0.3+Math.random()*0.4)+"s";
+    spark.style.cssText=`left:${x}px;top:${y}px;width:${len}px;height:${h}px;background:rgba(0,200,83,0.9);--a:${angle}deg;--len:${len}px;animation-duration:${dur}`;
+    layer.appendChild(spark);
+    spark.addEventListener("animationend",()=>spark.remove());
+  }
+
+  // Crack lines (SVG)
+  const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.setAttribute("width","200");svg.setAttribute("height","200");
+  svg.style.cssText=`position:absolute;left:${x-100}px;top:${y-100}px;pointer-events:none;`;
+  svg.classList.add("crack");
+  const numCracks=5+Math.floor(Math.random()*4);
+  for(let i=0;i<numCracks;i++){
+    const path=document.createElementNS("http://www.w3.org/2000/svg","path");
+    const a=(i/numCracks)*Math.PI*2;
+    const len=30+Math.random()*60;
+    const mid=15+Math.random()*20;
+    const mx=100+Math.cos(a)*mid+(-10+Math.random()*20);
+    const my=100+Math.sin(a)*mid+(-10+Math.random()*20);
+    const ex=100+Math.cos(a)*len+(-15+Math.random()*30);
+    const ey=100+Math.sin(a)*len+(-15+Math.random()*30);
+    path.setAttribute("d",`M100,100 L${mx},${my} L${ex},${ey}`);
+    path.setAttribute("stroke","rgba(0,255,136,0.7)");
+    path.setAttribute("stroke-width","1");
+    path.setAttribute("fill","none");
+    svg.appendChild(path);
+  }
+  layer.appendChild(svg);
+  svg.addEventListener("animationend",()=>svg.remove());
+
+  // Green particle dots
+  for(let i=0;i<8;i++){
+    const dot=document.createElement("div");
+    const a=Math.random()*Math.PI*2;
+    const spd=40+Math.random()*80;
+    const tx=Math.cos(a)*spd;
+    const ty=Math.sin(a)*spd;
+    const s=3+Math.random()*5;
+    dot.style.cssText=`position:absolute;left:${x}px;top:${y}px;width:${s}px;height:${s}px;border-radius:50%;background:rgba(0,200,83,0.9);animation:none;transition:transform 0.5s ease-out,opacity 0.5s ease-out`;
+    layer.appendChild(dot);
+    requestAnimationFrame(()=>{
+      dot.style.transform=`translate(${tx}px,${ty}px)`;
+      dot.style.opacity="0";
+    });
+    setTimeout(()=>dot.remove(),600);
+  }
+}
+
+/* Random explosions periodically */
+setInterval(()=>{
+  const x=Math.random()*innerWidth;
+  const y=Math.random()*innerHeight*0.7;
+  spawnExplosion(x,y);
+},3500);
+
+/* ===== SCROLL REVEAL ===== */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");}),{threshold:0.1});
+document.querySelectorAll(".reveal").forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
