@@ -1,83 +1,152 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$7900 Token - $CASHCAT Airdrop</title>
-    <link rel="stylesheet" href="style.css">
+    <title>7900 • MOON OR DUST</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Impact:wght@400;700&family=Inter:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(180deg, #39ff14 10%, #000 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* UÇAN & DÖNEN CASHCAT'LER */
+        .cashcat {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: url('cashcat.png') center/contain no-repeat;
+            background-size: contain;
+            border-radius: 50%;
+            animation: flyAndSpin linear infinite;
+            opacity: 0.85;
+            filter: drop-shadow(0 0 15px #39ff14);
+        }
+        
+        @keyframes flyAndSpin {
+            0% {
+                transform: translateY(120vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-120vh) rotate(1080deg);
+            }
+        }
+        
+        .logo {
+            width: 420px;
+            filter: drop-shadow(0 0 60px #39ff14);
+            margin-bottom: 10px;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 7rem;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+            color: #000;
+            text-shadow: 
+                0 0 20px #39ff14,
+                0 0 40px #39ff14,
+                4px 4px 0 #39ff14;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 2.2rem;
+            margin: 10px 0 20px;
+            font-weight: 700;
+            color: #39ff14;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+        
+        p {
+            max-width: 720px;
+            font-size: 1.5rem;
+            margin: 15px 0;
+            z-index: 2;
+        }
+        
+        .highlight {
+            color: #39ff14;
+            font-weight: 900;
+        }
+        
+        .btn {
+            margin-top: 30px;
+            padding: 18px 50px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            background: #39ff14;
+            color: black;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 0 30px #39ff14;
+            z-index: 2;
+        }
+        
+        .btn:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 0 60px #39ff14;
+        }
+        
+        footer {
+            padding: 2rem;
+            opacity: 0.7;
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo-container">
-                <img src="assets/7900-logo.png" alt="$7900 Logo" class="logo">
-                <h1>$7900 Token</h1>
-            </div>
-            <p class="subtitle">$CASHCAT Topluluğuna Özel Airdrop</p>
-        </header>
+    <div class="hero">
+        <!-- Uçan & Dönen CashCat'ler -->
+        <div class="cashcat" style="left: 5%; animation-duration: 14s;"></div>
+        <div class="cashcat" style="left: 12%; animation-duration: 22s; animation-delay: -4s;"></div>
+        <div class="cashcat" style="left: 25%; animation-duration: 17s; animation-delay: -11s;"></div>
+        <div class="cashcat" style="left: 38%; animation-duration: 26s; animation-delay: -7s;"></div>
+        <div class="cashcat" style="left: 50%; animation-duration: 15s; animation-delay: -18s;"></div>
+        <div class="cashcat" style="left: 65%; animation-duration: 20s; animation-delay: -3s;"></div>
+        <div class="cashcat" style="left: 78%; animation-duration: 19s; animation-delay: -9s;"></div>
+        <div class="cashcat" style="left: 88%; animation-duration: 24s;"></div>
 
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-label">Toplam Hak Sahibi</span>
-                <span class="stat-value" id="totalHolders">7,900</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Dağıtılan Token</span>
-                <span class="stat-value" id="distributedAmount">0</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Tamamlanan</span>
-                <span class="stat-value" id="completedPercent">0%</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Son Durum</span>
-                <span class="stat-value" id="status">Hazır</span>
-            </div>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <!-- Live Transactions -->
-        <div class="transactions-container">
-            <h2>📡 Canlı Dağıtım</h2>
-            <div class="transaction-list" id="transactionList">
-                <div class="loading">Dağıtım başlatılıyor...</div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <div class="controls">
-            <button id="startDistribution" class="btn-primary">🚀 Dağıtımı Başlat</button>
-            <button id="pauseDistribution" class="btn-secondary" disabled>⏸ Durdur</button>
-            <button id="resetDistribution" class="btn-danger">🔄 Sıfırla</button>
-        </div>
-
-        <!-- Info -->
-        <div class="info-box">
-            <h3>📋 Dağıtım Detayları</h3>
-            <ul>
-                <li>🔹 <strong>Token:</strong> $7900</li>
-                <li>🔹 <strong>Kontrat:</strong> <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" target="_blank">0x020bfC650A365f8BB26819deAAbF3E21291018b4</a></li>
-                <li>🔹 <strong>Hak Sahipleri:</strong> 7,900 $CASHCAT Holder</li>
-                <li>🔹 <strong>Miktar:</strong> Her adrese eşit dağıtım</li>
-            </ul>
-        </div>
-
-        <!-- Holder List -->
-        <div class="holders-section">
-            <h3>👥 Hak Sahipleri Listesi</h3>
-            <div class="search-box">
-                <input type="text" id="searchHolder" placeholder="Adres ara...">
-            </div>
-            <div class="holder-list" id="holderList"></div>
-        </div>
+        <img src="7900.png" alt="7900" class="logo">
+        
+        <h1>7900</h1>
+        <p class="subtitle">MOON OR DUST</p>
+        <p><strong>Special drop for 7900 $CASHCAT holders.</strong></p>
+        <p>All tokens from the creator wallet have been sent.<br>
+        <span class="highlight">Now it's your turn to send it to the moon.</span></p>
+        
+        <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
+           target="_blank" class="btn">
+            CHECK ON BLOCKSCOUT →
+        </a>
     </div>
-
-    <script src="script.js"></script>
+    
+    <footer>
+        7900 TOKEN • ROBINHOOD CHAIN • POWERED BY CASHCAT COMMUNITY
+    </footer>
 </body>
 </html>
