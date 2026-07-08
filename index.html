@@ -28,32 +28,29 @@
             padding: 2rem;
         }
         
-        /* UÇAN & DÖNEN CASHCAT'LER */
+        /* UÇAN CASHCAT'LER */
         .cashcat {
             position: absolute;
-            width: 90px;
-            height: 90px;
-            background: url('cashcat.png') center/contain no-repeat;
+            width: 100px;
+            height: 100px;
             background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
             border-radius: 50%;
             animation: flyAndSpin linear infinite;
-            opacity: 0.85;
-            filter: drop-shadow(0 0 15px #39ff14);
+            opacity: 0.9;
+            filter: drop-shadow(0 0 20px #39ff14);
+            z-index: 1;
         }
         
         @keyframes flyAndSpin {
-            0% {
-                transform: translateY(120vh) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-120vh) rotate(1080deg);
-            }
+            0% { transform: translateY(120vh) rotate(0deg); }
+            100% { transform: translateY(-120vh) rotate(1440deg); }
         }
         
         .logo {
             width: 420px;
             filter: drop-shadow(0 0 60px #39ff14);
-            margin-bottom: 10px;
             z-index: 2;
         }
         
@@ -61,92 +58,76 @@
             font-family: 'Impact', sans-serif;
             font-size: 7rem;
             font-weight: 900;
-            margin: 0;
-            line-height: 1;
+            margin: 10px 0 5px;
             color: #000;
-            text-shadow: 
-                0 0 20px #39ff14,
-                0 0 40px #39ff14,
-                4px 4px 0 #39ff14;
+            text-shadow: 0 0 30px #39ff14, 4px 4px 0 #39ff14;
             z-index: 2;
         }
         
         .subtitle {
-            font-size: 2.2rem;
-            margin: 10px 0 20px;
-            font-weight: 700;
+            font-size: 2.3rem;
+            margin: 0 0 20px;
             color: #39ff14;
+            font-weight: 900;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            letter-spacing: 4px;
         }
         
         p {
-            max-width: 720px;
-            font-size: 1.5rem;
+            max-width: 700px;
+            font-size: 1.55rem;
             margin: 15px 0;
             z-index: 2;
         }
         
-        .highlight {
-            color: #39ff14;
-            font-weight: 900;
-        }
-        
         .btn {
             margin-top: 30px;
-            padding: 18px 50px;
-            font-size: 1.6rem;
+            padding: 18px 55px;
+            font-size: 1.7rem;
             font-weight: bold;
             background: #39ff14;
             color: black;
-            border: none;
             border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s;
-            box-shadow: 0 0 30px #39ff14;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 40px #39ff14;
+            transition: 0.4s;
             z-index: 2;
         }
         
         .btn:hover {
-            transform: scale(1.1) rotate(3deg);
-            box-shadow: 0 0 60px #39ff14;
-        }
-        
-        footer {
-            padding: 2rem;
-            opacity: 0.7;
-            font-size: 1.1rem;
+            transform: scale(1.12);
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <!-- Uçan & Dönen CashCat'ler -->
-        <div class="cashcat" style="left: 5%; animation-duration: 14s;"></div>
-        <div class="cashcat" style="left: 12%; animation-duration: 22s; animation-delay: -4s;"></div>
-        <div class="cashcat" style="left: 25%; animation-duration: 17s; animation-delay: -11s;"></div>
-        <div class="cashcat" style="left: 38%; animation-duration: 26s; animation-delay: -7s;"></div>
-        <div class="cashcat" style="left: 50%; animation-duration: 15s; animation-delay: -18s;"></div>
-        <div class="cashcat" style="left: 65%; animation-duration: 20s; animation-delay: -3s;"></div>
-        <div class="cashcat" style="left: 78%; animation-duration: 19s; animation-delay: -9s;"></div>
-        <div class="cashcat" style="left: 88%; animation-duration: 24s;"></div>
+        <!-- CashCat Resimleri -->
+        <div class="cashcat" style="left: 8%;  background-image: url('cashcat.png'); animation-duration: 16s;"></div>
+        <div class="cashcat" style="left: 18%; background-image: url('cashcat.png'); animation-duration: 23s; animation-delay: -5s;"></div>
+        <div class="cashcat" style="left: 28%; background-image: url('cashcat.png'); animation-duration: 14s; animation-delay: -12s;"></div>
+        <div class="cashcat" style="left: 42%; background-image: url('cashcat.png'); animation-duration: 25s; animation-delay: -8s;"></div>
+        <div class="cashcat" style="left: 55%; background-image: url('cashcat.png'); animation-duration: 18s; animation-delay: -15s;"></div>
+        <div class="cashcat" style="left: 68%; background-image: url('cashcat.png'); animation-duration: 21s; animation-delay: -3s;"></div>
+        <div class="cashcat" style="left: 80%; background-image: url('cashcat.png'); animation-duration: 19s;"></div>
+        <div class="cashcat" style="left: 90%; background-image: url('cashcat.png'); animation-duration: 27s; animation-delay: -10s;"></div>
 
-        <img src="7900.png" alt="7900" class="logo">
+        <img src="7900.png" alt="7900 Logo" class="logo">
         
         <h1>7900</h1>
         <p class="subtitle">MOON OR DUST</p>
-        <p><strong>Special drop for 7900 $CASHCAT holders.</strong></p>
-        <p>All tokens from the creator wallet have been sent.<br>
-        <span class="highlight">Now it's your turn to send it to the moon.</span></p>
+        <p><strong>7900 $CASHCAT holders special airdrop.</strong></p>
+        <p>All creator tokens distributed.<br>
+        <span style="color:#39ff14; font-weight:900;">Now send it to the moon.</span></p>
         
         <a href="https://robinhoodchain.blockscout.com/token/0x020bfC650A365f8BB26819deAAbF3E21291018b4" 
            target="_blank" class="btn">
-            CHECK ON BLOCKSCOUT →
+            VIEW ON BLOCKSCOUT →
         </a>
     </div>
     
-    <footer>
-        7900 TOKEN • ROBINHOOD CHAIN • POWERED BY CASHCAT COMMUNITY
+    <footer style="padding:2rem; opacity:0.7;">
+        7900 TOKEN • ROBINHOOD CHAIN
     </footer>
 </body>
 </html>
